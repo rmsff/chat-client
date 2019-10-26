@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { Button, Block } from '../../../components';
+import { Button, Block } from 'components';
 
 export default class LoginForm extends Component {
   render () {
