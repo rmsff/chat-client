@@ -1,10 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Form, Icon, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { Button, Block } from 'components';
+import { isValid } from 'date-fns';
 
-export default class RegisterForm extends Component {
-  renderRegistrationConfirmation = () => {
+const RegisterForm = props => {
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isSubmitting,
+
+    success,
+  } = props;
+
+  const renderRegistrationConfirmation = () => {
     return (
       <div className='auth__success-block'>
         <div>
@@ -16,30 +29,45 @@ export default class RegisterForm extends Component {
     )
   };
   
-  renderRegistrationForm = () => {
+  const renderRegistrationForm = () => {
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item validateStatus="success" hasFeedback>
+      <Form onSubmit={handleSubmit} className="login-form">
+        <Form.Item
+          validateStatus={!touched.email ? '' : errors.email ? 'error' : 'success'}
+          help={!touched.email ? '' : errors.email}
+          hasFeedback
+        >          
           <Input
+            id='email'
             prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="E-mail"
+            value={values.email}
             size='large'
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
         </Form.Item>
         <Form.Item>
           <Input
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            type="password"
+            type="name"
             placeholder="Имя"
             size='large'
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item 
+          validateStatus={!touched.password ? '' : errors.password ? 'error' : 'success'}
+          help={!touched.password ? '' : errors.password} 
+          hasFeedback>
           <Input
+            id='password'
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
             placeholder="Пароль"
             size='large'
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
         </Form.Item>
         <Form.Item>
@@ -51,7 +79,8 @@ export default class RegisterForm extends Component {
           />
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button" size='large'>
+          {isSubmitting && isValid && <span>Ошибка</span>}
+          <Button onClick={handleSubmit} type="primary" size='large'>
             Зарегистрироваться
           </Button>
         </Form.Item>
@@ -62,20 +91,19 @@ export default class RegisterForm extends Component {
     );
   };
 
-  render () {
-    const { success } = this.props;
-    return (
-      <div>
-        <div className='auth__top'>
-          <h2>Регистрация</h2>
-          <p>Для входа в чат, Вам нужно зарегистрироваться</p>
-        </div>
-        <Block>
-          {success
-            ? this.renderRegistrationConfirmation()
-            : this.renderRegistrationForm()}
-        </Block>
+  return (
+    <div>
+      <div className='auth__top'>
+        <h2>Регистрация</h2>
+        <p>Для входа в чат, Вам нужно зарегистрироваться</p>
       </div>
-    )
-  }
+      <Block>
+        {success
+          ? renderRegistrationConfirmation()
+          : renderRegistrationForm()}
+      </Block>
+    </div>
+  )
 }
+
+export default RegisterForm;
