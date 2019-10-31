@@ -14,7 +14,6 @@ const RegisterForm = props => {
     handleBlur,
     handleSubmit,
     isSubmitting,
-
     success,
   } = props;
 
@@ -24,10 +23,10 @@ const RegisterForm = props => {
         <Icon type='info-circle' theme='twoTone' />
       </div>
       <h2>Подтвердите свой аккаунт</h2>
-      <p>На указанный Вами E-mail отправлено письмо со сылкой для подтверждения аккаунта.</p>
+      <p>На указанный Вами E-mail отправлено письмо со cсылкой для подтверждения аккаунта.</p>
     </div>
   );
-  
+
   const renderRegistrationForm = () => (
     <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item
@@ -53,9 +52,9 @@ const RegisterForm = props => {
           size='large'
         />
       </Form.Item>
-      <Form.Item 
+      <Form.Item
         validateStatus={validateField('password', touched, errors)}
-        help={touched.password && errors.password} 
+        help={touched.password && errors.password}
         hasFeedback>
         <Input
           id='password'
