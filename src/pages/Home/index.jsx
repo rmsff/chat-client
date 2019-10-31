@@ -6,13 +6,30 @@ import audio from 'assets/file_example_WAV_2MG.wav'
 
 const Home = () => (
 	<section className="home">
-		<Message
+		<Dialogs
+			items={[
+				{
+					_id: Math.random(),
+					text:
+						'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit sunt, ullam facere iste aut praesentium eligendi, aliquid, ab distinctio eius dolorem corporis dolorum est recusandae autem sequi delectus explicabo consectetur?',
+					isReaded: true,
+					created_at: new Date('Sat Oct 24 2018 11:03:01'), //'Sat Oct 24 2019 11:03:01'
+					user: {
+						_id: '256fe0e29b90d2c36271b5d58cfadcdd',
+						fullname: 'Fedor Dostoevsky',
+						//avatar: 'https://sun1-27.userapi.com/c851328/v851328881/1521fb/G6lEbbO8h-8.jpg?ava=1',
+					},
+				},
+			]}
+		/>
+
+		{/* <Message
 			avatar="https://sun1-20.userapi.com/c824502/v824502841/15c2cd/-CaadExwWME.jpg?ava=1"
 			//text="Hi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are youHi, bro! How are you?"
 			date="Sat Oct 24 2019 11:03:01"
       isMe={false}
 			audio={audio}
-		/>
+		/> */}
 
 		{/* <Dialogs
       items={[

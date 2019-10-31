@@ -9,17 +9,10 @@ const Dialogs = ({ items, userId }) => {
 	return (
 		<div className="dialogs">
 			{sorted.map(({ _id, text, isReaded, created_at, user }) => (
-				<DialogItem
-					key={_id}
-					message={text}
-					isMe={user._id === userId}
-				/>
+				<DialogItem key={_id} user={user} message={text} isMe={user._id === userId} />
 			))}
 		</div>
 	);
-
-
-
 
 	// return (
 	// 	<div className="dialogs">
