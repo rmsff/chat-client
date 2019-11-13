@@ -1,15 +1,16 @@
-import tinycolor from "tinycolor2";
+import tinycolor from 'tinycolor2';
+
+const getRandomArbitrary = (min, max) => Math.round(Math.random() * (max - min) + min);
 
 const getCorrectIndex = idx =>
 	({
-		[idx > 255]: 255,
-		[idx < 0]: 0,
+		[idx > 255 || idx < 0]: getRandomArbitrary(0, 255),
 		[256 > idx && idx > 0]: idx,
 	}[true]);
 
 export default hash => {
 	const [r, g, b] = hash
-		.substr(0, 3)
+		.substr(21, 24)
 		.split('')
 		.map(char => getCorrectIndex(char.charCodeAt()));
 

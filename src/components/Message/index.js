@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Time, IconReaded } from 'components';
+import { Time, IconReaded, Avatar } from 'components';
 import { converteCurrentTime } from 'utils/helpers';
+import { uniqueId } from 'lodash';
+
 import waveSvg from 'assets/img/wave.svg';
 import playSvg from 'assets/img/play.svg';
 import pauseSvg from 'assets/img/pause.svg';
@@ -66,7 +68,7 @@ const Message = ({
 	avatar,
 	user,
 	text,
-	date,
+	created_at,
 	isMe,
 	audio,
 	isReaded,
@@ -84,7 +86,7 @@ const Message = ({
 			<div className="message__content">
 				<IconReaded isMe={isMe} isReaded={isReaded} />
 				<div className="message__avatar">
-					<img src={avatar} alt={`Avatar ${user.fullname}`} />
+					<Avatar user={user} />
 				</div>
 				<div className="message__info">
 					{(audio || text || isTyping) && (
@@ -103,14 +105,14 @@ const Message = ({
 					<div className="message__attachments">
 						{attachments &&
 							attachments.map(item => (
-								<div className="message__attachments-item">
+								<div key={uniqueId()} className="message__attachments-item">
 									<img src={item.url} alt={item.filename} />
 								</div>
 							))}
 					</div>
-					{date && (
+					{created_at && (
 						<span className="message__date message__date__isme">
-							<Time date={date} />
+							<Time date={created_at} />
 						</span>
 					)}
 				</div>

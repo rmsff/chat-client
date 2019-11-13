@@ -1,12 +1,43 @@
 import React from 'react';
-import { Message, Dialogs } from 'components';
+import { Icon, Button } from 'antd';
+import { Status, ChatInput } from 'components';
+import { Dialogs, Messages } from 'containers';
 import './Home.scss';
-
-import audio from 'assets/file_example_WAV_2MG.wav'
 
 const Home = () => (
 	<section className="home">
-		<Dialogs
+		<div className="chat">
+			<div className="chat__sidebar">
+        <div className="chat__sidebar-header">
+          <div>
+            <Icon type="team" />
+            <span>Список диалогов</span>
+          </div>
+          <Button type="ghost" shape="circle" icon="form" />
+        </div>
+        <Dialogs items={[]}/>
+      </div>
+			<div className="chat__dialog">
+				<div className="chat__dialog-header">
+          <div />
+					<div className="chat__dialog-header-center">
+						<b className="chat__dialog-header-username">Anna</b>
+						<div className="chat__dialog-header-status">
+							<Status online={true} />
+						</div>
+					</div>
+          <Button type="ghost" shape="circle" icon="ellipsis" />
+				</div>
+        <div className='chat__dialog-messages' >
+          <Messages />
+        </div>
+        <div className='chat__dialog-input'>
+          <ChatInput />
+        </div>
+			</div>
+		</div>
+
+		{/* <Dialogs
 			items={[
 				{
 					_id: Math.random(),
@@ -21,7 +52,7 @@ const Home = () => (
 					},
 				},
 			]}
-		/>
+		/> */}
 
 		{/* <Message
 			avatar="https://sun1-20.userapi.com/c824502/v824502841/15c2cd/-CaadExwWME.jpg?ava=1"

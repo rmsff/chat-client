@@ -1,0 +1,10 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px 0px 10px;
+  overflow: scroll;
+
+  .ant-spin-spinning {
+    padding: 10px;
+  }
+}

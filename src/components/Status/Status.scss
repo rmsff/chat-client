@@ -1,0 +1,26 @@
+@import '~styles/variable';
+
+.status {
+  color: #bfbfbf;
+  font-size: 12px;
+
+  &::before {
+    display: inline-block;
+    margin-top: 7px;
+    margin-bottom: 0;
+    margin-left: 0px;
+    margin-right: 5px;
+    content: '';
+    background-color: rgb(189, 186, 186);
+    border-radius: 30px;
+    width: 8px;
+    height: 8px;
+    border: 0px solid #fff;
+  }
+
+  &--online {
+    &::before {
+      background-color: $green;
+    }
+  }
+}
