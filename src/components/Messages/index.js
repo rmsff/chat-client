@@ -1,18 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Message } from 'components';
 import { Empty, Button, Spin } from 'antd';
 
 import './Messages.scss';
 
-const Messages = ({ blockRef, isLoading, items }) => {
+const Messages = ({ blockRef, isLoading, items, myId, handleRemoveMessage }) => {
 	if (items.length) {
 		return (
 			<div className="messages" ref={blockRef}>
 				<div className="height2000" style={{ height: '2000px' }} />
-				{items.map(item => (
-					<Message {...item} />
-				))}
+				{items.map(item => {
+					const isMe = myId === item.user._id || myId === item.user;
+					return (
+						<Message
+							key={item._id}
+							{...item}
+							isMe={isMe}
+							handleRemoveMessage={handleRemoveMessage}
+						/>
+					);
+				})}
 			</div>
 		);
 	}
@@ -21,7 +30,6 @@ const Messages = ({ blockRef, isLoading, items }) => {
 		return (
 			<div className="messages" ref={blockRef}>
 				<div className="height2000" style={{ height: '2000px' }} />
-
 				<Spin size="large" tip="Загрузка сообщений..." />
 				<div className="height2000" style={{ height: '2000px' }} />
 			</div>
@@ -38,10 +46,13 @@ const Messages = ({ blockRef, isLoading, items }) => {
 				}}
 				description={
 					<span>
-						<a href="#API">Здесь пока что совсем пусто</a>
+						<a href="#API">Здесь совсем пусто</a>
 					</span>
 				}>
-				<Button type="primary">Напишите что-нибудь!</Button>
+				<p>Выберите диалог или </p>
+				<Button type="primary" style={{ marginTop: '5px' }}>
+					напишите кому-нибудь!
+				</Button>
 			</Empty>
 			<div className="height2000" style={{ height: '2000px' }} />
 		</div>

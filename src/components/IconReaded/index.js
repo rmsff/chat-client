@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import readedSvg from "assets/img/readed.svg";
 import noReadedSvg from "assets/img/noreaded.svg";
 
-const IconReaded = ({ isMe = false, isReaded = false }) => {
+const IconReaded = ({ isMe, isReaded = false }) => {
   const mappingIsReaded = {
     true: <img className="message__icon-readed" src={readedSvg} alt="Readed icon" />,
     false: (

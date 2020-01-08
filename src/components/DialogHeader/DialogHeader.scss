@@ -1,0 +1,24 @@
+.chat__dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+  border-bottom: 1px solid #f7f7f7;
+
+  &-center {
+    text-align: center;
+    margin-right: calc(0% - 32px);
+  }
+
+  &>i {
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+
+  &-username {
+    font-weight: 700;
+    font-size: 16px;
+  }
+}

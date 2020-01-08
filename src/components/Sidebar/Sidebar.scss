@@ -1,0 +1,51 @@
+.chat__sidebar {
+  width: 320px;
+  border-right: 1px solid #f7f7f7;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7.5px 7.5px 7.5px 14.5px;
+    border-bottom: 1px solid #f7f7f7;
+
+    &>div {
+      i {
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &-search {
+    padding: 20px 20px 20px 20px;
+
+    :hover {
+      background-color: #fafafa !important;
+    }
+
+    :focus {
+      box-shadow: none;
+    }
+
+    .ant-input {
+      background-color: #f7f8f9;
+      border: 0;
+      height: 32px;
+      padding: 4px 11px 6px;
+    }
+  }
+
+  &-dialogs {
+    overflow: scroll;
+    height: calc(100% - 46px);
+
+    .dialogs {
+      &__item {
+        padding: 10px 10px;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}

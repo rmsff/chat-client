@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Popover, Button } from 'antd';
+
 import { Time, IconReaded, Avatar } from 'components';
 import { converteCurrentTime } from 'utils/helpers';
 import { uniqueId } from 'lodash';
@@ -11,7 +13,6 @@ import pauseSvg from 'assets/img/pause.svg';
 import './Message.scss';
 
 const MessageAudio = ({ audio }) => {
-
 	const audioElem = useRef(null);
 
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -64,17 +65,26 @@ const MessageAudio = ({ audio }) => {
 	);
 };
 
-const Message = ({
-	avatar,
-	user,
-	text,
-	created_at,
-	isMe,
-	audio,
-	isReaded,
-	attachments,
-	isTyping,
-}) => {
+const Message = (props) => {
+	const {
+		_id,
+		user,
+		text,
+		createdAt,
+		isMe,
+		audio,
+		isReaded,
+		attachments,
+		isTyping,
+		handleRemoveMessage,
+	} = props;
+
+	const [isVisiblePopover, setIsVisiblePopover] = useState(false);
+
+	const handleVisibleChange = (visible) => {
+		setIsVisiblePopover(visible);
+	}
+
 	return (
 		<div
 			className={classnames('message', {
@@ -85,6 +95,15 @@ const Message = ({
 			})}>
 			<div className="message__content">
 				<IconReaded isMe={isMe} isReaded={isReaded} />
+				{isMe && <Popover
+					content={<Button size='small' type="danger" onClick={handleRemoveMessage(_id)}>Удалить</Button>}
+					trigger="click"
+					visible={isVisiblePopover}
+					onVisibleChange={handleVisibleChange}>
+					<div className="message__icon-actions">
+						<Button type="link" shape="circle" icon="ellipsis" />
+					</div>
+				</Popover>}
 				<div className="message__avatar">
 					<Avatar user={user} />
 				</div>
@@ -110,9 +129,9 @@ const Message = ({
 								</div>
 							))}
 					</div>
-					{created_at && (
+					{createdAt && (
 						<span className="message__date message__date__isme">
-							<Time date={created_at} />
+							<Time date={createdAt} />
 						</span>
 					)}
 				</div>

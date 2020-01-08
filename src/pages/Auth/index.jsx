@@ -1,15 +1,21 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { LoginForm, RegisterForm } from 'modules';
+import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
+import { SignInForm, SignUpForm } from 'modules';
+import VerifyEmail from './components/VerifyEmail';
 import './Auth.scss';
 
-const Auth = () => (
-  <section className='auth'>
-    <div className='auth__content'>
-      <Route exact path={['/', '/login']} component={LoginForm} />
-      <Route path='/register' component={RegisterForm} />
-    </div> 
-  </section>
-);
+const Auth = ({ isAuth }) => {
+	return (
+		<section className="auth">
+			<div className="auth__content">
+				<Route exact path={['/', '/signin']} component={SignInForm} />
+				<Route path="/signup" component={SignUpForm} />
+				<Route path="/verify_email" component={VerifyEmail} />
+				{isAuth && <Redirect to="/im" />}
+			</div>
+		</section>
+	);
+};
 
-export default Auth;
+export default connect(({ user: { isAuth } }) => ({ isAuth }))(Auth);

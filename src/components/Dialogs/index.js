@@ -5,12 +5,12 @@ import { sortBy } from 'lodash';
 import './Dialogs.scss';
 
 const Dialogs = ({
+	myId,
 	items,
-	userId,
 	onSearch,
 	inputValue,
 	onSelectDialog,
-	currentDialogId,
+	currentDialog,
 }) => {
 	const renderDialogs = () => {
 		if (items.length === 0) {
@@ -29,19 +29,22 @@ const Dialogs = ({
 				</Empty>
 			);
 		}
-		const sorted = sortBy(items, dialog => new Date(dialog.created_at)).reverse();
+
+		const sorted = sortBy(items, dialog => new Date(dialog.lastMessage.createdAt)).reverse();
 		return (
 			<div className="dialogs">
-				{sorted.map(({ _id, text, isReaded, created_at, user }) => (
+				{sorted.map(({ _id, text, author, partner, isReaded, createdAt, user, lastMessage }) => lastMessage && (
 					<DialogItem
 						key={_id}
-						_id={_id}
+						dialogId={_id}
+						lastMessage={lastMessage}
+						myId={myId}
+						partner={myId === author._id ? partner : author}
 						user={user}
 						message={text}
-						isMe={true}
-						created_at={created_at}
+						createdAt={createdAt}
 						onSelect={onSelectDialog}
-						currentDialogId={currentDialogId}
+						currentDialog={currentDialog}
 					/>
 				))}
 			</div>
