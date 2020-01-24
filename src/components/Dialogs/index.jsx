@@ -1,6 +1,6 @@
 import React from 'react';
 import { DialogItem } from 'components';
-import { Input, Empty, Button } from 'antd';
+import { Input, Empty } from 'antd';
 import { sortBy } from 'lodash';
 import './Dialogs.scss';
 
@@ -9,8 +9,7 @@ const Dialogs = ({
 	items,
 	onSearch,
 	inputValue,
-	onSelectDialog,
-	currentDialog,
+	currentDialogId,
 }) => {
 	const renderDialogs = () => {
 		if (items.length === 0) {
@@ -22,10 +21,11 @@ const Dialogs = ({
 					}}
 					description={
 						<span>
-							<a href="#API">Диалогов не найдено</a>
+							<a href=" ">Диалогов не найдено.</a>
+							<br/>
+							<a href=" ">Напишите кому-нибудь!</a>
 						</span>
 					}>
-					<Button type="primary">Написать кому-нибудь?</Button>
 				</Empty>
 			);
 		}
@@ -33,18 +33,14 @@ const Dialogs = ({
 		const sorted = sortBy(items, dialog => new Date(dialog.lastMessage.createdAt)).reverse();
 		return (
 			<div className="dialogs">
-				{sorted.map(({ _id, text, author, partner, isReaded, createdAt, user, lastMessage }) => lastMessage && (
+				{sorted.map(({ _id, author, partner, lastMessage }) => (
 					<DialogItem
 						key={_id}
 						dialogId={_id}
 						lastMessage={lastMessage}
 						myId={myId}
 						partner={myId === author._id ? partner : author}
-						user={user}
-						message={text}
-						createdAt={createdAt}
-						onSelect={onSelectDialog}
-						currentDialog={currentDialog}
+						currentDialogId={currentDialogId}
 					/>
 				))}
 			</div>

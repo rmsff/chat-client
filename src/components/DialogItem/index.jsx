@@ -8,19 +8,14 @@ const DialogItem = props => {
 		dialogId,
 		myId,
 		partner,
-		//user,
-		//message,
 		isReaded,
-	//	unread,
-	//	createdAt,
-		onSelect,
-		currentDialog: { currentDialogId },
+		currentDialogId,
 		lastMessage,
 	} = props;
 
 	return (
 		<Link to={`/dialog/${dialogId}`}>
-			<div onClick={onSelect.bind(this, { dialogId, myId })}
+			<div
 				className={classnames('dialogs__item', {
 					'dialogs__item--online': partner.isOnline,
 					active: currentDialogId === dialogId,
@@ -38,9 +33,9 @@ const DialogItem = props => {
 					<div className="dialogs__item-info-bottom">
 						<p>{lastMessage.text}</p>
 						{<IconReaded isMe={myId === lastMessage.user_id} isReaded={isReaded} />}
-						{lastMessage.unread && (
+						{!lastMessage.readed && (
 							<div className="dialogs__item-info-bottom-count">
-								{lastMessage.unread > 9 ? '+9' : lastMessage.unread}
+								{lastMessage.readed > 9 ? '' : ''}
 							</div>
 						)}
 					</div>

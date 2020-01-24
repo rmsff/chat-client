@@ -9,6 +9,8 @@
       &.active {
         background-color: #1890ff;
         color: #fff;
+        border-radius: 3px 3px 3px 3px;
+
       }
     }
   }
@@ -16,6 +18,7 @@
   &__item {
     $item: &;
 
+    border-radius: 3px 3px 3px 3px;
     color: black;
     display: flex;
     margin-bottom: 20px;
@@ -104,10 +107,10 @@
           width: 18px;
           height: 18px;
           border-radius: 30px;
-          font-size: 11px;
+          font-size: 12px;
           text-align: center;
           line-height: 17px;
-          box-shadow: 0 0 0px 3px #fff;
+          box-shadow: 0 0 0px 2px #fff;
         }
 
         .message__icon-readed {

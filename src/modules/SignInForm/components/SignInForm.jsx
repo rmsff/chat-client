@@ -12,7 +12,6 @@ export default ({
 	handleBlur,
 	handleSubmit,
 	isSubmitting,
-	isValid,
 }) => {
 	const handleSubmitForm = (event) => {
 		event.preventDefault();

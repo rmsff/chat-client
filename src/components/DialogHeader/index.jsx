@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Button } from 'antd';
 
 import { Status } from 'components';
@@ -9,9 +8,9 @@ import './DialogHeader.scss';
 const DialogHeader = ({
 	currentDialogId,
 	partnerFullname,
-	partnerIsOnline
+	partnerIsOnline,
 }) => {
-	return currentDialogId.length > 0 && (
+	return currentDialogId !== '' && (
 		<div className="chat__dialog-header">
 			<div />
 			<div className="chat__dialog-header-center">
@@ -23,10 +22,6 @@ const DialogHeader = ({
 			<Button type="ghost" shape="circle" icon="ellipsis" />
 		</div>
 	);
-};
-
-DialogHeader.propTypes = {
-	className: PropTypes.string,
 };
 
 export default DialogHeader;

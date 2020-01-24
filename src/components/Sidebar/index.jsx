@@ -12,13 +12,13 @@ const Sidebar = ({
 	messageText,
 	selectedUser,
 	isLoading,
-	handleShowModal,
-	handleCreateDialog,
-	handleCancel,
-	handleChangeUsersInput,
-	handleChangeMessageText,
-	handleSearch,
-	handleSelectUser,
+	onShowModal,
+	onCreateDialog,
+	onCancel,
+	onChangeUsersInput,
+	onChangeMessageText,
+	onSearch,
+	onSelectUser,
 }) => {
 	const options = users.map(({ _id, fullname, email }) => (
 		<Select.Option key={_id}>{`${fullname} : ${email}`}</Select.Option>
@@ -31,15 +31,15 @@ const Sidebar = ({
 					<Icon type="team" />
 					<span>Список диалогов</span>
 				</div>
-				<Button onClick={handleShowModal} type="ghost" shape="circle" icon="form" />
+				<Button onClick={onShowModal} type="ghost" shape="circle" icon="form" />
 			</div>
 			<Dialogs />
 			<Modal
 				title="Создание диалога"
 				visible={visible}
 				okButtonProps={{ disabled: messageText === '' || selectedUser === '' }}
-				onOk={handleCreateDialog}
-				onCancel={handleCancel}
+				onOk={onCreateDialog}
+				onCancel={onCancel}
 				okText="Создать диалог"
 				cancelText="Отменить"
 				confirmLoading={isLoading}>
@@ -49,9 +49,9 @@ const Sidebar = ({
 							? 'Введите имя пользователя или E-Mail'
 							: usersInputValue
 					}
-					onSearch={handleSearch}
-					onChange={handleChangeUsersInput}
-					onSelect={handleSelectUser}
+					onSearch={onSearch}
+					onChange={onChangeUsersInput}
+					onSelect={onSelectUser}
 					notFoundContent={null}
 					style={{ width: '100%', opacity: usersInputValue === '' ? '0.5' : '1' }}
 					defaultActiveFirstOption={false}
@@ -64,7 +64,7 @@ const Sidebar = ({
 				<br />
 				{selectedUser !== '' && (
 					<Input.TextArea
-						onChange={handleChangeMessageText}
+						onChange={onChangeMessageText}
 						placeholder="Введите сообщение"
 						autoSize={{ minRows: 2, maxRows: 6 }}
 						value={messageText}

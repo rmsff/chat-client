@@ -2,23 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Message } from 'components';
-import { Empty, Button, Spin } from 'antd';
+import { Empty, Spin } from 'antd';
 
 import './Messages.scss';
 
-const Messages = ({ blockRef, isLoading, items, myId, handleRemoveMessage }) => {
-	if (items.length) {
+const Messages = ({ blockRef, isLoading, items, myId, onRemoveMessage, currentDialogId }) => {
+	if (items.length && currentDialogId !== '') {
 		return (
 			<div className="messages" ref={blockRef}>
 				<div className="height2000" style={{ height: '2000px' }} />
 				{items.map(item => {
-					const isMe = myId === item.user._id || myId === item.user;
+					const isMe = myId === item.user._id || myId === item.user._id;
 					return (
 						<Message
 							key={item._id}
 							{...item}
 							isMe={isMe}
-							handleRemoveMessage={handleRemoveMessage}
+							onRemoveMessage={onRemoveMessage}
 						/>
 					);
 				})}
@@ -46,13 +46,10 @@ const Messages = ({ blockRef, isLoading, items, myId, handleRemoveMessage }) => 
 				}}
 				description={
 					<span>
-						<a href="#API">Здесь совсем пусто</a>
+						<a href=" ">Здесь совсем пусто</a>
 					</span>
 				}>
-				<p>Выберите диалог или </p>
-				<Button type="primary" style={{ marginTop: '5px' }}>
-					напишите кому-нибудь!
-				</Button>
+				<a href=" ">Выберите диалог или напишите кому-нибудь!</a>
 			</Empty>
 			<div className="height2000" style={{ height: '2000px' }} />
 		</div>

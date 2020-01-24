@@ -13,7 +13,7 @@ const mapStateToProps = ({
 	},
 }) => ({
 	myId: _id,
-	currentDialogId: dialogs.currentDialog.currentDialogId,
+	currentDialogId: dialogs.currentDialogId,
 	items: messages.items,
 	isLoading: messages.isLoading,
 });
@@ -30,7 +30,7 @@ const MessagesContainer = ({
 	const messagesRef = useRef(null);
 
 	useEffect(() => {
-		if (currentDialogId) {
+		if (currentDialogId !== '') {
 			fetchMessages(currentDialogId);
 		}
 		const onNewMessage = newMessage => addMessages(newMessage);
@@ -39,10 +39,10 @@ const MessagesContainer = ({
 	}, [addMessages, currentDialogId, fetchMessages]);
 
 	useEffect(() => {
-		if (messagesRef.current) {
+		if (messagesRef.current && currentDialogId !== '') {
 			messagesRef.current.scrollTo(0, messagesRef.current.scrollHeight);
 		}
-	}, [items]);
+	}, [currentDialogId, items]);
 
 	const handleRemoveMessage = messageId => () => removeMessage(messageId);
 
@@ -52,7 +52,8 @@ const MessagesContainer = ({
 			items={items}
 			isLoading={isLoading}
 			myId={myId}
-			handleRemoveMessage={handleRemoveMessage}
+			onRemoveMessage={handleRemoveMessage}
+			currentDialogId={currentDialogId}
 		/>
 	);
 };

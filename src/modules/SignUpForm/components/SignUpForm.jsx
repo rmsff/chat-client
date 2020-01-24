@@ -12,7 +12,6 @@ const SignUpForm = ({
 	handleBlur,
 	handleSubmit,
 	isSubmitting,
-	//	success,
 	status,
 }) => {
 	const renderRegistrationConfirmation = () => (

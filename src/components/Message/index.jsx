@@ -10,6 +10,7 @@ import { uniqueId } from 'lodash';
 import waveSvg from 'assets/img/wave.svg';
 import playSvg from 'assets/img/play.svg';
 import pauseSvg from 'assets/img/pause.svg';
+
 import './Message.scss';
 
 const MessageAudio = ({ audio }) => {
@@ -73,10 +74,10 @@ const Message = (props) => {
 		createdAt,
 		isMe,
 		audio,
-		isReaded,
+		readed,
 		attachments,
 		isTyping,
-		handleRemoveMessage,
+		onRemoveMessage,
 	} = props;
 
 	const [isVisiblePopover, setIsVisiblePopover] = useState(false);
@@ -91,12 +92,12 @@ const Message = (props) => {
 				'message--isme': isMe,
 				'message--is-typing': isTyping,
 				'message--is-audio': audio,
-				'message--image': attachments && attachments.length === 1,
+				'message--image': attachments.length === 1,
 			})}>
 			<div className="message__content">
-				<IconReaded isMe={isMe} isReaded={isReaded} />
+				<IconReaded isMe={isMe} isReaded={readed} />
 				{isMe && <Popover
-					content={<Button size='small' type="danger" onClick={handleRemoveMessage(_id)}>Удалить</Button>}
+					content={<Button size='small' type="danger" onClick={onRemoveMessage(_id)}>Удалить</Button>}
 					trigger="click"
 					visible={isVisiblePopover}
 					onVisibleChange={handleVisibleChange}>
@@ -122,26 +123,19 @@ const Message = (props) => {
 						</div>
 					)}
 					<div className="message__attachments">
-						{attachments &&
-							attachments.map(item => (
+						{attachments.map(item => (
 								<div key={uniqueId()} className="message__attachments-item">
 									<img src={item.url} alt={item.filename} />
 								</div>
 							))}
 					</div>
-					{createdAt && (
-						<span className="message__date message__date__isme">
-							<Time date={createdAt} />
-						</span>
-					)}
+					<span className="message__date message__date__isme">
+						<Time date={createdAt} />
+					</span>
 				</div>
 			</div>
 		</div>
 	);
-};
-
-Message.defaultProps = {
-	user: {},
 };
 
 Message.propTypes = {

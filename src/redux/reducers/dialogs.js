@@ -1,11 +1,6 @@
 const initialState = {
 	items: [],
-	currentDialog: {
-		currentDialogId: '',
-		partnerFullname: '',
-		partnerIsOnline: '',
-		partnerId: '',
-	},
+	currentDialogId: '',
 	isLoading: false,
 };
 
@@ -16,21 +11,12 @@ export default (state = initialState, { type, payload }) => {
         ...state,
 				items: payload,
 			};
-		case 'DIALOGS:SET_CURRENT_DIALOG_ID': {
-			const dialog = state.items.filter((dialog) => payload.dialogId === dialog._id)[0];
-			const partner = dialog.author._id === payload.myId ? dialog.partner : dialog.author;
+		case 'DIALOGS:SET_CURRENT_DIALOG_ID':
 			return {
-        ...state,
-				currentDialog: {
-					...state.currentDialog,
-					currentDialogId: payload.dialogId,
-					partnerFullname: partner.fullname,
-					partnerIsOnline: partner.isOnline,
-					partnerId: partner._id,
-				},
-				isLoading: true,
+				...state,
+				currentDialogId: payload,
+				isLoading: false,
 			};
-		}
 		default:
 			return state;
 	}

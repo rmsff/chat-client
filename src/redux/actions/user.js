@@ -10,17 +10,6 @@ const Actions = {
 			token: window.localStorage.token
 		},
 	}),
-
-	// fetchUserData: () => dispatch => {
-	// 	userApi.getMe().then(({ data }) => {
-	// 		dispatch(Actions.setUserData(data));
-	// 	}).catch(err => {
-	// 		if (err.response.status === 403) {
-
-	// 		}
-
-	// })
-	// },
 	fetchUserSignIn: postData => dispatch => {
 		return userApi.signIn(postData).then(({ data }) => {
 			const { token, status, user } = data;
@@ -50,7 +39,7 @@ const Actions = {
 	fetchUserSignUp: postData => dispatch => {
 		return userApi
 			.signUp(postData)
-			.then(({ data, data: { status } }) => {
+			.then(({ data: { status } }) => {
 				const mapping = {
 					success: {
 						type: 'success',

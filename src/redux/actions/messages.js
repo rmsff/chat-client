@@ -1,5 +1,5 @@
 import { messagesApi } from 'utils/api';
-import { openNotification } from 'utils/helpers'
+import { openNotification } from 'utils/helpers';
 
 const Actions = {
 	setMessages: items => ({
@@ -8,9 +8,7 @@ const Actions = {
 	}),
 	addMessages: newMessage => (dispatch, getState) => {
 		const {
-			dialogs: {
-				currentDialog: { currentDialogId },
-			},
+			dialogs: { currentDialogId },
 		} = getState();
 		if (currentDialogId === newMessage.dialog._id)
 			dispatch({
@@ -32,22 +30,46 @@ const Actions = {
 			.catch(() => dispatch(Actions.setIsLoading(false)));
 	},
 	submitMessage: messageData => dispatch => {
-		messagesApi.submitMessage(messageData);
+		messagesApi
+			.submitMessage(messageData)
+			.then(() => {
+				dispatch({
+					type: 'FILELIST:SET_FILELIST',
+					payload: [],
+				});
+				dispatch({
+					type: 'ATTACHMENTS:SET_FILES',
+					payload: [],
+				});
+			})
+			.catch(() =>
+				openNotification({
+					type: 'error',
+					message: 'Ошибка',
+					description:
+						'При отправке сообщения возникла ошибка. Пожалуйста, попробуйте еще!',
+					duration: 5,
+				})
+			);
 	},
 	removeMessage: messageId => dispatch => {
-		messagesApi.removeMessage(messageId).then(() => {
-			dispatch({
-				type: 'MESSAGES:REMOVE_MESSAGE',
-				payload: messageId,
+		messagesApi
+			.removeMessage(messageId)
+			.then(() => {
+				dispatch({
+					type: 'MESSAGES:REMOVE_MESSAGE',
+					payload: messageId,
+				});
+			})
+			.catch(err => {
+				openNotification({
+					type: 'error',
+					message: 'Ошибка',
+					description:
+						'При удалении сообщения возникла ошибка. Пожалуйста, напишите нам, чтобы мы могли это исправить.',
+					duration: 8,
+				});
 			});
-		}).catch((err) => {
-			openNotification({
-				type: 'error',
-				message: 'Ошибка',
-				description: 'При удалении сообщения возникла ошибка. Пожалуйста, напишите нам, чтобы мы могли это исправить.',
-				duration: 8,
-			});
-		})
 	},
 };
 

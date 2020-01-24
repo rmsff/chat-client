@@ -28,7 +28,7 @@
       width: 33px;
       height: 33px;
       margin-right: 13px;
-      margin-bottom: 13px;  // 5px
+      margin-bottom: 13px;
     }
   }
 
@@ -48,16 +48,16 @@
   &__text {
     color: #fff;
     line-height: 20px;
+    font-size: 15px;;
   }
 
   &__attachments {
     display: flex;
     margin-bottom: 5px;
     &-item {
-      margin-right: 5px;
+      margin: 4px 2px 0px 2px;
       cursor: pointer;
       img {
-        // width: 45px;
         height: 45px;
         border-radius: 8px;
       }
@@ -165,6 +165,7 @@
       border-radius: 12px 12px 0px 12px;
       order: 2;
       #{$self}__text {
+        font-size: 15px;
         color: $black;
       }
     }
@@ -174,17 +175,17 @@
     #{$self}__bubble {
       background-color: $message-typing-blue;
       box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.04);
-      padding: 10px 20px; // 15px 18px
-      //margin-bottom: 0;
+      padding: 10px 20px;
     }
   }
 
   &--image {
     #{$self}__attachments {
       &-item {
+        margin: 4px 0px 0px 0px;
         img {
-          width: 150px;
-          height: 150px;
+          border-radius: 12px 12px 0px 12px;
+          height: 94px;
         }
       }
     }

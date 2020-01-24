@@ -57,6 +57,7 @@ const SidebarContainer = ({ data }) => {
 				setVisible(false);
 				setUsersInputValue('');
 				setMessageText('');
+				setSelectedUser('');
 			} catch (err) {
 				openNotification({
 					type: 'error',
@@ -79,13 +80,13 @@ const SidebarContainer = ({ data }) => {
 			messageText={messageText}
 			selectedUser={selectedUser}
 			isLoading={isLoading}
-			handleShowModal={handleShowModal}
-			handleCreateDialog={handleCreateDialog}
-			handleCancel={handleCancel}
-			handleChangeUsersInput={handleChangeUsersInput}
-			handleChangeMessageText={handleChangeMessageText}
-			handleSearch={handleSearch}
-			handleSelectUser={handleSelectUser}
+			onShowModal={handleShowModal}
+			onCreateDialog={handleCreateDialog}
+			onCancel={handleCancel}
+			onChangeUsersInput={handleChangeUsersInput}
+			onChangeMessageText={handleChangeMessageText}
+			onSearch={handleSearch}
+			onSelectUser={handleSelectUser}
 		/>
 	);
 };

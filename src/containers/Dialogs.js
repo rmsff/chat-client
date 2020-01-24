@@ -15,7 +15,7 @@ const mapStateToProps = ({
 	myId: _id,
 });
 
-const Dialogs = ({ fetchDialogs, setCurrentDialogId, currentDialog, items, myId }) => {
+const Dialogs = ({ fetchDialogs, currentDialogId, items, myId }) => {
 	const [inputValue, setValue] = useState('');
 	const [filtered, setFilteredItems] = useState(Array.from(items));
 
@@ -25,13 +25,12 @@ const Dialogs = ({ fetchDialogs, setCurrentDialogId, currentDialog, items, myId 
 		} else {
 			setFilteredItems(items);
 		}
-
-		const onNewDialog = newDialog => fetchDialogs(); //  refactoring
+		const onNewDialog = newDialog => fetchDialogs();
 		socket.on('SERVER:DIALOG_CREATED', onNewDialog);
 		return () => socket.removeListener('SERVER:DIALOG_CREATED', onNewDialog);
 	}, [fetchDialogs, items]);
 
-	const onChangeInput = value => {
+	const handleChangeInput = value => {
 		const newItems = items.filter(({ author, partner }) => {
 			const lowerValue = value.toLowerCase();
 			const name = author._id === myId ? partner.fullname : author.fullname;
@@ -45,10 +44,9 @@ const Dialogs = ({ fetchDialogs, setCurrentDialogId, currentDialog, items, myId 
 	return (
 		<BaseDialogs
 			items={filtered}
-			onSearch={onChangeInput}
+			onSearch={handleChangeInput}
 			inputValue={inputValue}
-			currentDialog={currentDialog}
-			onSelectDialog={setCurrentDialogId}
+			currentDialogId={currentDialogId}
 			myId={myId}
 		/>
 	);
