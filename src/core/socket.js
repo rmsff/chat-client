@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 
-const socket = io(window.location.origin.replace('80', '3003'));
+const serverPort = '3003';
+const socket = io(`${window.location.origin}:${serverPort}`);
 
 export default socket;

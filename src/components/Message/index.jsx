@@ -66,26 +66,20 @@ const MessageAudio = ({ audio }) => {
 	);
 };
 
-const Message = (props) => {
-	const {
-		_id,
-		user,
-		text,
-		createdAt,
-		isMe,
-		audio,
-		readed,
-		attachments,
-		isTyping,
-		onRemoveMessage,
-	} = props;
-
+const Message = ({
+	_id,
+	user,
+	text,
+	createdAt,
+	isMe,
+	audio,
+	readed,
+	attachments,
+	isTyping,
+	onRemoveMessage,
+}) => {
 	const [isVisiblePopover, setIsVisiblePopover] = useState(false);
-
-	const handleVisibleChange = (visible) => {
-		setIsVisiblePopover(visible);
-	}
-
+	const handleVisibleChange = (visible) => setIsVisiblePopover(visible);
 	return (
 		<div
 			className={classnames('message', {

@@ -3,16 +3,14 @@ import classnames from 'classnames';
 import { Time, IconReaded, Avatar } from 'components';
 import { Link } from 'react-router-dom';
 
-const DialogItem = props => {
-	const {
-		dialogId,
-		myId,
-		partner,
-		isReaded,
-		currentDialogId,
-		lastMessage,
-	} = props;
-
+const DialogItem = ({
+	dialogId,
+	myId,
+	partner,
+	isReaded,
+	currentDialogId,
+	lastMessage,
+}) => {
 	return (
 		<Link to={`/dialog/${dialogId}`}>
 			<div
