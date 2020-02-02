@@ -1,9 +1,10 @@
 
-#  Сhat frontend
+# Сhat client
 [![Maintainability](https://api.codeclimate.com/v1/badges/05ee95200bd6dd123f97/maintainability)](https://codeclimate.com/github/serikoff/chat-client/maintainability)
-This repository is the backend part of the chat.
 
-[Chat backend](https://github.com/serikoff/chat-server)
+
+This repository is the frontend part of the chat. `[In developing]`
+[Chat server](https://github.com/serikoff/chat-server)
 
 ## Demo
 [chat-app](http://chat-app.website/)
@@ -52,6 +53,4 @@ Using nginx is recommended.
 [Configure nginx for nodejs backend and React frontend app](https://www.digitalocean.com/community/questions/configure-nginx-for-nodejs-backend-and-react-frontend-app)
 In the nginx configuration, you need to configure proxying API requests to port 3003.
 
-### Learn More
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+[Learn more about deployment](https://facebook.github.io/create-react-app/docs/deployment)

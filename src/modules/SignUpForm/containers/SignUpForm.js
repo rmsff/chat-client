@@ -19,6 +19,7 @@ export default withFormik({
 			.then(status => {
 				setSubmitting(false);
 				setStatus(status === 'success');
+				setTimeout(()=> window.history.back(-4), 4000);
 			})
 			.catch(() => setSubmitting(false));
 	},

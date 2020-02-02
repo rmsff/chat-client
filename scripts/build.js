@@ -1,4 +1,4 @@
-'use strict';
+
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
@@ -126,11 +126,7 @@ checkBrowsers(paths.appPath, isInteractive)
     process.exit(1);
   });
 
-// Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
-  // We used to support resolving modules according to `NODE_PATH`.
-  // This now has been deprecated in favor of jsconfig/tsconfig.json
-  // This lets you use absolute paths in imports inside large monorepos:
   if (process.env.NODE_PATH) {
     console.log(
       chalk.yellow(
@@ -139,17 +135,13 @@ function build(previousFileSizes) {
     );
     console.log();
   }
-
   console.log('Creating an optimized production build...');
-
   const compiler = webpack(config);
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       let messages;
       if (err) {
-        if (!err.message) {
-          return reject(err);
-        }
+        if (!err.message) return reject(err);
         messages = formatWebpackMessages({
           errors: [err.message],
           warnings: [],
@@ -160,8 +152,6 @@ function build(previousFileSizes) {
         );
       }
       if (messages.errors.length) {
-        // Only keep the first error. Others are often indicative
-        // of the same problem, but confuse the reader with noise.
         if (messages.errors.length > 1) {
           messages.errors.length = 1;
         }
@@ -181,7 +171,6 @@ function build(previousFileSizes) {
         );
         return reject(new Error(messages.warnings.join('\n\n')));
       }
-
       return resolve({
         stats,
         previousFileSizes,
