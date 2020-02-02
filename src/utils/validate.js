@@ -15,7 +15,7 @@ export default ({ isAuth, values }) => {
 			} else if (
 				!/^([a-zA-Zа-яА-ЯёЁ'][a-zA-Z-а-яА-ЯёЁ' ]+[a-zA-Zа-яА-ЯёЁ']?$)/.test(value)
 			) {
-				errors.fullname = 'Имя должно содержать не менее двух букв';
+				errors.fullname = 'Имя может содержать не менее двух букв';
 			}
 		},
 		password: value => {

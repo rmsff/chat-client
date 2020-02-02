@@ -6,9 +6,6 @@
 This repository is the frontend part of the chat. `[In developing]`
 [Chat server](https://github.com/serikoff/chat-server)
 
-## Demo
-[chat-app](http://chat-app.website/)
-
 ##
   **Stack:**
 -   ReactJS
@@ -54,3 +51,16 @@ Using nginx is recommended.
 In the nginx configuration, you need to configure proxying API requests to port 3003.
 
 [Learn more about deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+
+## Demo
+[chat-app](http://chat-app.website/)
+
+```
+login: demouser@li.ru
+pass: Qwerty777
+```
+
+#### Watch the video demo
+
+[![Watch the video demo](https://res.cloudinary.com/serikoff/image/upload/v1580662690/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2020-02-02_%D0%B2_19.57.41_lax7xm.png)](https://res.cloudinary.com/serikoff/video/upload/v1580661654/Demo_gafzqg.mp4)
