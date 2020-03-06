@@ -156,6 +156,9 @@
         display: block;
         text-align: right;
       }
+      .message__attachments {
+        flex-direction: row-reverse;
+      }
     }
 
     #{$self}__bubble {
